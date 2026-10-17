@@ -444,7 +444,7 @@ body.cur-text .cur { opacity: 0; }
         <div>
           <p class="kicker"><b>_008</b> Call · Cuéntanos tu idea</p>
           <form id="f" style="margin-top:16px" novalidate>
-            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
             <div class="two">
               <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" placeholder="Tu nombre o marca" required></div>
               <div class="field"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder="tu@email.com" required></div>
@@ -509,7 +509,7 @@ body.cur-text .cur { opacity: 0; }
         <h3>Conservación</h3>
         <p>Guardamos tus datos mientras tratamos tu consulta o dura la relación profesional, y después durante los plazos que exija la ley.</p>
         <h3>Destinatarios</h3>
-        <p>No cedemos tus datos a terceros salvo obligación legal. Pueden acceder a ellos los proveedores que nos prestan el servicio de email, alojamiento web (GitHub Pages) y envío del formulario de contacto (FormSubmit), únicamente para ese fin.</p>
+        <p>No cedemos tus datos a terceros salvo obligación legal. Pueden acceder a ellos los proveedores que nos prestan el servicio de email, alojamiento web (GitHub Pages) y envío del formulario de contacto (Web3Forms), únicamente para ese fin.</p>
         <h3>Tus derechos</h3>
         <p>Puedes pedir acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad de tus datos escribiendo a info.chaosdepartment@gmail.com. Si crees que no hemos atendido bien tu solicitud, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
       </section>
@@ -624,15 +624,20 @@ body.cur-text .cur { opacity: 0; }
     const btn = f.querySelector('button[type="submit"]');
     btn.disabled = true; btn.textContent = "Sending…";
     note.textContent = "Enviando tu mensaje…";
-    const fd = new FormData(f);
-    fd.delete("ok"); fd.append("Privacidad", "Aceptada");
-    fd.append("_subject", "Nuevo contacto web CHAOS · " + name);
-    fd.append("_replyto", mail); fd.append("_template", "table"); fd.append("_captcha", "false");
-    const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), 15000);
-    fetch("https://formsubmit.co/ajax/info.chaosdepartment@gmail.com", { method: "POST", body: fd, headers: { "Accept": "application/json" }, signal: ctl.signal })
+    const payload = {
+      access_key: "fd8ffcf9-936e-4fcf-a59d-7bc4e006face",
+      subject: "Nuevo contacto web CHAOS · " + name,
+      from_name: "Web CHAOS Department",
+      name: name, email: mail, replyto: mail,
+      territorio: f.type.value, message: text,
+      privacidad: "Aceptada",
+      botcheck: f.botcheck.checked
+    };
+    const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), 20000);
+    fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload), signal: ctl.signal })
       .then(r => r.json())
       .then(j => {
-        if (String(j.success) === "true") { note.textContent = "Mensaje enviado. Gracias, " + name + ": te responderemos a " + mail + "."; f.reset(); }
+        if (j && j.success) { note.textContent = "Mensaje enviado. Gracias, " + name + ": te responderemos a " + mail + "."; f.reset(); }
         else { note.textContent = "No se ha podido enviar. Escríbenos a info.chaosdepartment@gmail.com."; }
       })
       .catch(() => { note.textContent = "No se ha podido enviar. Escríbenos directamente a info.chaosdepartment@gmail.com."; })
