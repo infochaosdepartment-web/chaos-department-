@@ -628,14 +628,15 @@ body.cur-text .cur { opacity: 0; }
     fd.delete("ok"); fd.append("Privacidad", "Aceptada");
     fd.append("_subject", "Nuevo contacto web CHAOS · " + name);
     fd.append("_replyto", mail); fd.append("_template", "table"); fd.append("_captcha", "false");
-    fetch("https://formsubmit.co/ajax/info.chaosdepartment@gmail.com", { method: "POST", body: fd, headers: { "Accept": "application/json" } })
+    const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), 15000);
+    fetch("https://formsubmit.co/ajax/info.chaosdepartment@gmail.com", { method: "POST", body: fd, headers: { "Accept": "application/json" }, signal: ctl.signal })
       .then(r => r.json())
       .then(j => {
         if (String(j.success) === "true") { note.textContent = "Mensaje enviado. Gracias, " + name + ": te responderemos a " + mail + "."; f.reset(); }
         else { note.textContent = "No se ha podido enviar. Escríbenos a info.chaosdepartment@gmail.com."; }
       })
       .catch(() => { note.textContent = "No se ha podido enviar. Escríbenos directamente a info.chaosdepartment@gmail.com."; })
-      .finally(() => { btn.disabled = false; btn.textContent = "Send"; });
+      .finally(() => { clearTimeout(tm); btn.disabled = false; btn.textContent = "Send"; });
   });
 })();
 </script>
