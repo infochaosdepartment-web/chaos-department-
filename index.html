@@ -405,9 +405,12 @@ window.chaosLoadGA = function () {
   gtag('consent', 'update', { analytics_storage: 'granted' });
   var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2QD0M2SS1M'; document.head.appendChild(s);
   gtag('js', new Date()); gtag('config', 'G-2QD0M2SS1M');
+  /* Píxel de Meta: solo tras aceptar cookies */
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '4620688844914933'); fbq('track', 'PageView');
 };
 try { if (localStorage.getItem('chaos_cookies') === 'granted') window.chaosLoadGA(); } catch (e) {}
-window.chaosTrack = function (name, params) { if (window.__gaLoaded) gtag('event', name, params || {}); };
+window.chaosTrack = function (name, params) { if (!window.__gaLoaded) return; gtag('event', name, params || {}); if (name === 'generate_lead' && window.fbq) fbq('track', 'Lead', { content_name: (params && params.method) || '' }); };
 </script>
 <style>
 .ck { position: fixed; left: 16px; bottom: 16px; z-index: 41; width: min(25rem, calc(100% - 32px)); padding: 18px 20px; border-radius: 18px;
@@ -767,14 +770,14 @@ window.chaosTrack = function (name, params) { if (window.__gaLoaded) gtag('event
         <h3>Conservación</h3>
         <p>Guardamos tus datos mientras tratamos tu consulta o dura la relación profesional, y después durante los plazos que exija la ley.</p>
         <h3>Destinatarios</h3>
-        <p>No cedemos tus datos a terceros salvo obligación legal. Pueden acceder a ellos los proveedores que nos prestan el servicio de email, alojamiento web (GitHub Pages), envío del formulario de contacto (Web3Forms) y, si aceptas las cookies de analítica, medición de visitas (Google Analytics), únicamente para ese fin.</p>
+        <p>No cedemos tus datos a terceros salvo obligación legal. Pueden acceder a ellos los proveedores que nos prestan el servicio de email, alojamiento web (GitHub Pages), envío del formulario de contacto (Web3Forms) y, si aceptas las cookies de analítica, medición de visitas y anuncios (Google Analytics y Meta), únicamente para ese fin.</p>
         <h3>Tus derechos</h3>
         <p>Puedes pedir acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad de tus datos escribiendo a info.chaosdepartment@gmail.com. Si crees que no hemos atendido bien tu solicitud, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
       </section>
       <section id="cookies">
         <p class="kicker"><b>_03</b> Política de cookies</p>
-        <p>Usamos cookies de analítica de Google Analytics 4 (Google Ireland Limited) para saber cuántas personas visitan la web, desde dónde llegan y qué secciones ven. Solo se activan si las aceptas en el aviso de cookies; si las rechazas, no se carga Google Analytics. No usamos cookies publicitarias.</p>
-        <p>Cookies de analítica: _ga y _ga_* (Google Analytics), distinguen visitas y sesiones; duran hasta 2 años. Además guardamos en tu navegador tu elección sobre las cookies (chaos_cookies), que es técnica y necesaria.</p>
+        <p>Usamos cookies de analítica de Google Analytics 4 (Google Ireland Limited) para saber cuántas personas visitan la web, desde dónde llegan y qué secciones ven. Solo se activan si las aceptas en el aviso de cookies; si las rechazas, no se carga Google Analytics. Con tu consentimiento también usamos el píxel de Meta (Meta Platforms Ireland Limited) para medir qué anuncios de Instagram y Facebook traen visitas y contactos, y para poder mostrar anuncios a quien ya ha visitado la web.</p>
+        <p>Cookies de analítica: _ga y _ga_* (Google Analytics), distinguen visitas y sesiones; duran hasta 2 años. Cookies publicitarias: _fbp (Meta), identifica el navegador para medir anuncios; dura 3 meses. Además guardamos en tu navegador tu elección sobre las cookies (chaos_cookies), que es técnica y necesaria.</p>
         <p>Las tipografías se cargan desde Google Fonts, lo que implica que tu navegador se conecta a los servidores de Google para descargarlas.</p>
         <p>Puedes cambiar tu elección cuando quieras: <a href="#" data-ck-open>configurar cookies</a>. También puedes borrar las cookies desde los ajustes de tu navegador.</p>
       </section>
