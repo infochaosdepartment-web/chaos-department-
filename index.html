@@ -269,24 +269,17 @@ body.in-feed .hud.top::before { opacity: 1; }
 @media (max-width: 860px) { .sf-top { grid-template-columns: 1fr; } .sf-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; } }
 @media (max-width: 480px) { .sf-cols { grid-template-columns: 1fr; } }
 
-/* ---------- hero video triptych ---------- */
-.hero-vids { position: absolute; inset: 0; z-index: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; background: var(--night); overflow: hidden; }
-.hv { margin: 0; position: relative; overflow: hidden; background: #111 center / cover no-repeat; }
-.hv video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.hv::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(0,0,0,.38), rgba(0,0,0,.08) 28%, rgba(0,0,0,.08) 70%, rgba(0,0,0,.45)),
-              repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px); }
-.hv-tag { position: absolute; z-index: 1; left: 14px; right: 14px; top: 76px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.5); display: inline-flex; align-items: center; gap: 7px; }
-.hv-tag i { width: 6px; height: 6px; border-radius: 50%; background: #ff3b3b; animation: blink 1.6s steps(2) infinite; }
-.hero > .panel, .hero > .scroll-cue { position: relative; z-index: 2; }
-.hero > .scroll-cue { position: absolute; }
-#home .hero { background: var(--night); }
-@media (max-width: 760px) {
-  .hero-vids { grid-template-columns: 1fr; }
-  .hv { position: absolute; inset: 0; opacity: 0; transition: opacity .8s var(--ease); }
-  .hv.on { opacity: 1; }
-  .hv-tag { top: 68px; left: 18px; }
-}
+/* ---------- creators reels ---------- */
+.reels { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: clamp(20px, 3vw, 40px); row-gap: 28px; }
+.reel { margin: 0; display: grid; gap: 12px; min-width: 0; }
+.reel-v { position: relative; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; background: #15181d; }
+.reel-v video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.reel-v::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px); }
+.rec-tag { position: absolute; z-index: 1; left: 14px; top: 14px; font-size: 10px; letter-spacing: .16em; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.5); display: inline-flex; align-items: center; gap: 7px; }
+.rec-tag i { width: 6px; height: 6px; border-radius: 50%; background: #ff3b3b; animation: blink 1.6s steps(2) infinite; }
+.reel figcaption { font-size: 10.5px; line-height: 1.45; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-soft); }
+.reel figcaption b { display: block; color: var(--ink); font-weight: 500; }
+@media (max-width: 640px) { .reels { grid-template-columns: 1fr; } .reel-v { max-height: 78svh; aspect-ratio: auto; height: 78svh; } }
 
 /* ---------- work ---------- */
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
@@ -431,11 +424,6 @@ body.cur-text .cur { opacity: 0; }
     <!-- HOME -->
     <section class="slide on" id="home" aria-label="Home">
       <div class="hero">
-      <div class="hero-vids" aria-hidden="true">
-        <figure class="hv"><video src="vid/reel-1.mp4" poster="vid/reel-1.jpg" autoplay muted loop playsinline preload="auto"></video><span class="hv-tag"><i></i>CAM 01 · Sara Fructuoso × YSL</span></figure>
-        <figure class="hv"><video src="vid/reel-2.mp4" poster="vid/reel-2.jpg" autoplay muted loop playsinline preload="auto"></video><span class="hv-tag"><i></i>CAM 02 · Mar Lucas · Festival de Cannes</span></figure>
-        <figure class="hv"><video src="vid/reel-3.mp4" poster="vid/reel-3.jpg" autoplay muted loop playsinline preload="auto"></video><span class="hv-tag"><i></i>CAM 03 · Lidia Rauet × adidas</span></figure>
-      </div>
       <div class="panel compact">
         <div class="p-head">
           <h1 class="mark">No rules.<br>Just vision.</h1>
@@ -451,9 +439,20 @@ body.cur-text .cur { opacity: 0; }
       </div>
 
       <div class="feed" id="feed">
+        <section aria-labelledby="f-creators">
+          <div class="f-head">
+            <p class="kicker"><b>_01</b> Trabajos realizados · Content Production</p>
+            <h2 class="f-title" id="f-creators">Content creator<br>con influencers</h2>
+          </div>
+          <div class="reels">
+            <figure class="reel"><div class="reel-v"><video src="vid/reel-1.mp4" poster="vid/reel-1.jpg" muted loop playsinline preload="metadata" aria-label="Rodaje de Sara Fructuoso para YSL"></video><span class="rec-tag"><i></i>REC</span></div><figcaption><b>Sara Fructuoso × YSL</b>Rodaje de campaña beauty</figcaption></figure>
+            <figure class="reel"><div class="reel-v"><video src="vid/reel-2.mp4" poster="vid/reel-2.jpg" muted loop playsinline preload="metadata" aria-label="Mar Lucas en el Festival de Cannes"></video><span class="rec-tag"><i></i>REC</span></div><figcaption><b>Mar Lucas · Festival de Cannes</b>Contenido de evento y alfombra roja</figcaption></figure>
+            <figure class="reel"><div class="reel-v"><video src="vid/reel-3.mp4" poster="vid/reel-3.jpg" muted loop playsinline preload="metadata" aria-label="Lidia Rauet para adidas"></video><span class="rec-tag"><i></i>REC</span></div><figcaption><b>Lidia Rauet × adidas</b>Contenido marca × influencer</figcaption></figure>
+          </div>
+        </section>
         <section aria-labelledby="f-adidas">
           <div class="f-head">
-            <p class="kicker"><b>_01</b> Concepto de campaña con IA · Styling &amp; Creative Direction · 2026</p>
+            <p class="kicker"><b>_02</b> Concepto de campaña con IA · Styling &amp; Creative Direction · 2026</p>
             <h2 class="f-title" id="f-adidas">adidas<br>Originals</h2>
             <p class="f-sub">Cocodrilo blanco y pitón, herrajes metálicos y un set rodeado de cámaras robóticas. Las tres rayas llevadas a un universo de laboratorio.</p>
           </div>
@@ -466,7 +465,7 @@ body.cur-text .cur { opacity: 0; }
 
         <section aria-labelledby="f-dg">
           <div class="f-head">
-            <p class="kicker"><b>_02</b> Concepto de campaña con IA · Beauty &amp; Fragrance · 2026</p>
+            <p class="kicker"><b>_03</b> Concepto de campaña con IA · Beauty &amp; Fragrance · 2026</p>
             <h2 class="f-title" id="f-dg">Dolce &amp;<br>Gabbana</h2>
             <p class="f-sub">Devotion. El corrector y el perfume entre anturios, raíces y gotas de agua: bodegón de beauty con luz de estudio y fondo negro.</p>
           </div>
@@ -479,7 +478,7 @@ body.cur-text .cur { opacity: 0; }
 
         <section aria-labelledby="f-gcds">
           <div class="f-head">
-            <p class="kicker"><b>_03</b> Concepto de campaña con IA · Footwear &amp; Retail · 2026</p>
+            <p class="kicker"><b>_04</b> Concepto de campaña con IA · Footwear &amp; Retail · 2026</p>
             <h2 class="f-title" id="f-gcds">GCDS<br>Project Morso</h2>
             <p class="f-sub">Una sandalia con mandíbula de colmillos cromados presentada como espécimen de laboratorio: radiografía, bodegón con joyería plateada y escaparate excavado en roca.</p>
           </div>
@@ -492,7 +491,7 @@ body.cur-text .cur { opacity: 0; }
 
         <section aria-labelledby="f-more">
           <div class="f-head">
-            <p class="kicker"><b>_04</b> Dirección creativa · Producción · Innovación</p>
+            <p class="kicker"><b>_05</b> Dirección creativa · Producción · Innovación</p>
             <h2 class="f-title" id="f-more">Selected<br>work</h2>
           </div>
           <div class="more">
@@ -506,7 +505,7 @@ body.cur-text .cur { opacity: 0; }
 
         <section aria-labelledby="f-how">
           <div class="f-head">
-            <p class="kicker"><b>_05</b> Qué hacemos</p>
+            <p class="kicker"><b>_06</b> Qué hacemos</p>
             <h2 class="f-title" id="f-how">Del concepto<br>al último plano</h2>
           </div>
           <p class="how-lead">Diseñamos el universo visual de marcas, artistas y proyectos culturales, y reunimos al equipo que lo ejecuta: en rodaje, en estudio o con IA.</p>
@@ -518,7 +517,7 @@ body.cur-text .cur { opacity: 0; }
         <div class="sf-in">
           <div class="sf-top">
             <div>
-              <p class="kicker"><b>_06</b> Contacto</p>
+              <p class="kicker"><b>_07</b> Contacto</p>
               <h2 class="f-title sf-title">¿Tienes<br>una idea?</h2>
             </div>
             <div class="sf-pitch">
@@ -900,31 +899,23 @@ body.cur-text .cur { opacity: 0; }
   });
 
 
-  // hero videos: play only while Home is on screen; on phones show one at a time
-  const hvs = [...document.querySelectorAll(".hv")], vids = hvs.map(h => h.querySelector("video"));
-  const narrow = matchMedia("(max-width: 760px)");
-  let hvIdx = 0, hvTimer = null;
+
+
+  // creator reels: play while visible on Home, pause otherwise
+  const reels = [...document.querySelectorAll(".reel video")];
+  const seen = new Set();
   const tryPlay = v => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
-  function hvSync() {
-    const onHome = order[cur] === "home";
-    if (narrow.matches) {
-      hvs.forEach((h, n) => h.classList.toggle("on", n === hvIdx));
-      vids.forEach((v, n) => { if (onHome && n === hvIdx) tryPlay(v); else v.pause(); });
-      clearTimeout(hvTimer);
-      if (onHome) hvTimer = setTimeout(() => { hvIdx = (hvIdx + 1) % vids.length; hvSync(); }, 7000);
-    } else {
-      hvs.forEach(h => h.classList.remove("on"));
-      vids.forEach(v => onHome ? tryPlay(v) : v.pause());
-    }
-  }
-  narrow.addEventListener ? narrow.addEventListener("change", hvSync) : narrow.addListener(hvSync);
-  new MutationObserver(hvSync).observe(document.body, { attributes: true, attributeFilter: ["data-slide"] });
-  document.addEventListener("visibilitychange", () => { if (!document.hidden) hvSync(); });
+  const reelSync = () => reels.forEach(v => (order[cur] === "home" && seen.has(v) && !document.hidden) ? tryPlay(v) : v.pause());
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)); reelSync(); }, { root: document.getElementById("home"), threshold: .25 });
+    reels.forEach(v => io.observe(v));
+  } else { reels.forEach(v => seen.add(v)); }
+  new MutationObserver(reelSync).observe(document.body, { attributes: true, attributeFilter: ["data-slide"] });
+  document.addEventListener("visibilitychange", reelSync);
 
   if (location.hash === "#legal") openLegal("terminos");
   const start = order.indexOf((location.hash || "").slice(1));
   cur = -1; go(start > -1 ? start : 0, false);
-  hvSync();
 
   const clock = document.getElementById("clock");
   const fmt = new Intl.DateTimeFormat("es-ES", { timeZone: "Europe/Madrid", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
