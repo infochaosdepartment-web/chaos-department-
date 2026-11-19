@@ -254,14 +254,14 @@ body.in-feed .hud.top::before { opacity: 1; }
 .sf-top { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(28px, 5vw, 80px); align-items: end; }
 .sf-title { margin-top: 18px; }
 .sf-pitch p { margin: 0 0 22px; font-size: 13px; line-height: 1.7; color: var(--ink-soft); max-width: 34rem; }
-.sf-cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); margin-top: clamp(64px, 8vw, 110px); }
+.sf-cols { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); margin-top: clamp(64px, 8vw, 110px); }
 .sf-col { display: grid; align-content: start; gap: 10px; border-top: 1px solid rgba(255,255,255,.3); padding-top: 14px; min-width: 0; font-size: 13px; }
 .sf-h { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px; }
 .sf-col a { text-decoration: none; color: var(--ink); width: fit-content; border-bottom: 1px solid transparent; transition: border-color .3s var(--ease); }
 .sf-col a:hover { border-bottom-color: var(--ink); }
 .sf-col a i { font-style: normal; color: var(--ink-soft); margin-left: 6px; }
 .sf-col > span:not(.sf-h) { color: var(--ink-soft); }
-.sf-mail { font-size: 15px; overflow-wrap: anywhere; user-select: all; }
+.sf-mail { font-size: clamp(12px, 1.15vw, 15px); white-space: nowrap; user-select: all; }
 .sf-copy { appearance: none; width: fit-content; background: none; border: 1px solid rgba(255,255,255,.3); color: var(--ink-soft); font: inherit; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; cursor: pointer; }
 .sf-copy:hover { color: var(--ink); border-color: var(--ink); }
 .sf-logo { display: block; width: clamp(110px, 12vw, 160px); height: auto; margin: clamp(64px, 8vw, 110px) auto 0; opacity: .95; }
