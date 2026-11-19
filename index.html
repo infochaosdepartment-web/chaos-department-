@@ -203,27 +203,28 @@ body[data-slide="ideas"] .hud, body[data-slide="ideas"] .arrow { color: var(--pa
 @keyframes cue { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(6px); opacity: .5; } }
 .slide > .feed { opacity: 0; transition: opacity .5s var(--ease); }
 .slide.on > .feed { opacity: 1; }
-.feed { position: relative; background: var(--night); padding: clamp(80px, 10vw, 140px) max(22px, env(safe-area-inset-right, 0px)) 120px max(22px, env(safe-area-inset-left, 0px)); }
+.feed { position: relative; background: var(--night); padding: clamp(120px, 14vw, 200px) max(clamp(22px, 5vw, 80px), env(safe-area-inset-right, 0px)) 160px max(clamp(22px, 5vw, 80px), env(safe-area-inset-left, 0px)); }
 .feed::before { content: ""; position: absolute; left: 0; right: 0; top: -120px; height: 120px; background: linear-gradient(180deg, rgba(13,15,19,0), var(--night)); pointer-events: none; }
 .feed > section { max-width: 1320px; margin: 0 auto; }
-.feed > section + section { margin-top: clamp(110px, 14vw, 200px); }
-.f-head { display: grid; gap: 14px; margin-bottom: clamp(28px, 4vw, 48px); }
+.feed > section + section { margin-top: clamp(160px, 20vw, 300px); }
+.f-head { display: grid; gap: 18px; margin-bottom: clamp(44px, 6vw, 88px); }
 .f-title { margin: 0; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(44px, 9vw, 150px); line-height: .86; letter-spacing: -.035em; text-wrap: balance; }
 .f-sub { margin: 0; font-size: 13px; line-height: 1.65; color: var(--ink-soft); max-width: 40rem; }
-.mosaic { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 12px; align-items: start; }
+.mosaic { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: clamp(20px, 3vw, 40px); row-gap: clamp(36px, 4.5vw, 64px); }
 .mosaic .ph { margin: 0; position: relative; overflow: hidden; border-radius: 12px; background: #15181d; cursor: pointer; display: block; }
-.mosaic .ph img { display: block; width: 100%; height: auto; transition: transform 1.4s var(--ease); }
+.mosaic .ph { aspect-ratio: 4 / 5; }
+.mosaic .ph img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
 .mosaic .ph:hover img { transform: scale(1.03); }
-.s7 { grid-column: span 7; } .s5 { grid-column: span 5; } .s6 { grid-column: span 6; }
-.push { margin-top: clamp(40px, 9vw, 140px) !important; }
+.s7 { grid-column: span 7; } .s5 { grid-column: span 5; padding-right: clamp(0px, 3vw, 48px); } .s6 { grid-column: span 6; }
+.push { margin-top: clamp(60px, 12vw, 200px) !important; }
 .c4 { grid-column: 4 / span 6; }
-.more { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.more { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: clamp(20px, 3vw, 40px); row-gap: clamp(36px, 4.5vw, 64px); }
 .more .silver { aspect-ratio: 4 / 5; border-radius: 12px; }
 .more figure { margin: 0; display: grid; gap: 8px; }
 .more figcaption { font-size: 10.5px; line-height: 1.45; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-soft); }
 .more figcaption b { display: block; color: var(--ink); font-weight: 500; }
 .how-lead { font-family: var(--display); font-weight: 800; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.15; letter-spacing: -.01em; margin: 0; max-width: 46rem; text-wrap: balance; }
-.steps { list-style: none; margin: clamp(40px, 5vw, 64px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+.steps { list-style: none; margin: clamp(56px, 7vw, 96px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: clamp(20px, 3vw, 40px); }
 .steps li { border-top: 1px solid rgba(255,255,255,.3); padding-top: 14px; }
 .steps .n { font-size: 10.5px; letter-spacing: .14em; color: var(--ink-faint); }
 .steps h3 { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(22px, 2.6vw, 34px); line-height: .95; letter-spacing: -.02em; margin: 8px 0 10px; }
@@ -237,6 +238,8 @@ body.in-feed .hud.top::before { opacity: 1; }
 @media (max-width: 640px) {
   .s7, .s5, .s6, .c4 { grid-column: 1 / -1; }
   .push { margin-top: 0 !important; }
+  .s5 { padding-right: 0; }
+  .mosaic { grid-template-columns: 1fr; row-gap: 20px; }
   .more { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .steps { grid-template-columns: 1fr; gap: 22px; }
   .hero { padding-block: 56px 64px; }
@@ -408,10 +411,9 @@ body.cur-text .cur { opacity: 0; }
             <p class="f-sub">Cocodrilo blanco y pitón, herrajes metálicos y un set rodeado de cámaras robóticas. Las tres rayas llevadas a un universo de laboratorio.</p>
           </div>
           <div class="mosaic">
-            <a class="ph s7" href="#home" data-gallery="adidas"><img src="img/adidas-croc-cameras.webp" alt="Modelo con chaqueta adidas de cocodrilo blanca bajo un aro de luz rodeada de cámaras robóticas" loading="lazy"></a>
-            <a class="ph s5 push" href="#home" data-gallery="adidas"><img src="img/adidas-python-portrait.webp" alt="Retrato con chándal adidas de pitón, gafas lilas y anillo metálico escultórico" loading="lazy"></a>
-            <a class="ph s5" href="#home" data-gallery="adidas"><img src="img/adidas-croc-front.webp" alt="Plano frontal de la chaqueta de cocodrilo con hebillas metálicas y cables" loading="lazy"></a>
-            <a class="ph s7 push" href="#home" data-gallery="adidas"><img src="img/adidas-python-corridor.webp" alt="Modelo con chándal adidas de pitón en un pasillo de roca con techo de luz" loading="lazy"></a>
+            <a class="ph" href="#home" data-gallery="adidas"><img src="img/adidas-croc-cameras.webp" alt="Modelo con chaqueta adidas de cocodrilo blanca bajo un aro de luz rodeada de cámaras robóticas" loading="lazy"></a>
+            <a class="ph" href="#home" data-gallery="adidas"><img src="img/adidas-python-portrait.webp" alt="Retrato con chándal adidas de pitón, gafas lilas y anillo metálico escultórico" loading="lazy"></a>
+            <a class="ph" href="#home" data-gallery="adidas"><img src="img/adidas-python-corridor.webp" alt="Modelo con chándal adidas de pitón en un pasillo de roca con techo de luz" loading="lazy"></a>
           </div>
         </section>
 
@@ -422,15 +424,28 @@ body.cur-text .cur { opacity: 0; }
             <p class="f-sub">Devotion. El corrector y el perfume entre anturios, raíces y gotas de agua: bodegón de beauty con luz de estudio y fondo negro.</p>
           </div>
           <div class="mosaic">
-            <a class="ph s5 push" href="#home" data-gallery="dg"><img src="img/dg-concealer-roots.webp" alt="Corrector Devotion entre una hoja de anturio rosa, raíces secas y amaranto verde" loading="lazy"></a>
-            <a class="ph s7" href="#home" data-gallery="dg"><img src="img/dg-concealer-anthurium.webp" alt="Corrector Devotion delante de un anturio granate con gotas de agua" loading="lazy"></a>
-            <a class="ph c4" href="#home" data-gallery="dg"><img src="img/dg-perfume-hands.webp" alt="Frasco de perfume Devotion sostenido por dos manos a contraluz" loading="lazy"></a>
+            <a class="ph" href="#home" data-gallery="dg"><img src="img/dg-concealer-roots.webp" alt="Corrector Devotion entre una hoja de anturio rosa, raíces secas y amaranto verde" loading="lazy"></a>
+            <a class="ph" href="#home" data-gallery="dg"><img src="img/dg-concealer-anthurium.webp" alt="Corrector Devotion delante de un anturio granate con gotas de agua" loading="lazy"></a>
+            <a class="ph" href="#home" data-gallery="dg"><img src="img/dg-perfume-hands.webp" alt="Frasco de perfume Devotion sostenido por dos manos a contraluz" loading="lazy"></a>
+          </div>
+        </section>
+
+        <section aria-labelledby="f-gcds">
+          <div class="f-head">
+            <p class="kicker"><b>_03</b> Concepto de campaña con IA · Footwear &amp; Retail · 2026</p>
+            <h2 class="f-title" id="f-gcds">GCDS<br>Project Morso</h2>
+            <p class="f-sub">Una sandalia con mandíbula de colmillos cromados presentada como espécimen de laboratorio: radiografía, bodegón con joyería plateada y escaparate excavado en roca.</p>
+          </div>
+          <div class="mosaic">
+            <a class="ph" href="#home" data-gallery="gcds"><img src="img/gcds-xray.webp" alt="Radiografía de la sandalia GCDS Morso con colmillos, con datos de laboratorio" loading="lazy"></a>
+            <a class="ph" href="#home" data-gallery="gcds"><img src="img/gcds-rings.webp" alt="Dos manos con anillos plateados delante de la sandalia de colmillos desenfocada" loading="lazy"></a>
+            <a class="ph" href="#home" data-gallery="gcds"><img src="img/gcds-window.webp" alt="Escaparate GCDS con estanterías excavadas en roca, cortinas de lino y red de cuerda" loading="lazy"></a>
           </div>
         </section>
 
         <section aria-labelledby="f-more">
           <div class="f-head">
-            <p class="kicker"><b>_03</b> Más visuales · pasa el ratón</p>
+            <p class="kicker"><b>_04</b> Más visuales · pasa el ratón</p>
             <h2 class="f-title" id="f-more">Más<br>visuales</h2>
           </div>
           <div class="more">
@@ -445,16 +460,10 @@ body.cur-text .cur { opacity: 0; }
 
         <section aria-labelledby="f-how">
           <div class="f-head">
-            <p class="kicker"><b>_04</b> Qué hacemos · Cómo trabajamos</p>
+            <p class="kicker"><b>_05</b> Qué hacemos · Cómo trabajamos</p>
             <h2 class="f-title" id="f-how">Del concepto<br>al último plano</h2>
           </div>
           <p class="how-lead">Somos un estudio de dirección creativa en Madrid. Diseñamos el universo visual de marcas, artistas y proyectos culturales, y reunimos al equipo que lo ejecuta: en rodaje, en estudio o con IA.</p>
-          <ol class="steps">
-            <li><span class="n">01</span><h3>Escuchar</h3><p>Partimos de la marca, el artista o el producto: qué quiere contar, a quién y dónde se va a ver.</p></li>
-            <li><span class="n">02</span><h3>Concepto</h3><p>Construimos la idea y el universo visual: narrativa, moodboards, referencias, styling y casting.</p></li>
-            <li><span class="n">03</span><h3>Producción</h3><p>Reunimos al talento de nuestra red y producimos: rodaje, fotografía, fashion film o imagen generada con IA.</p></li>
-            <li><span class="n">04</span><h3>Entrega</h3><p>Edición, postproducción y piezas adaptadas a cada canal: campaña, redes, web o activación.</p></li>
-          </ol>
         </section>
 
         <section class="f-cta">
@@ -494,6 +503,7 @@ body.cur-text .cur { opacity: 0; }
               <thead><tr><th>Name</th><th>Type</th><th>Year</th></tr></thead>
               <tbody>
                 <tr data-gallery="dg" tabindex="0" role="button" aria-label="Ver la sesión de Dolce &amp; Gabbana"><td>Dolce &amp; Gabbana</td><td>Concepto de campaña con IA</td><td>2026</td></tr>
+                <tr data-gallery="gcds" tabindex="0" role="button" aria-label="Ver la sesión de GCDS"><td>GCDS</td><td>Concepto de campaña con IA</td><td>2026</td></tr>
                 <tr data-gallery="adidas" tabindex="0" role="button" aria-label="Ver la sesión de adidas Originals"><td>adidas Originals</td><td>Concepto de campaña con IA</td><td>2026</td></tr>
                 <tr><td>RVFV</td><td>Dirección creativa</td><td>2026</td></tr>
                 <tr><td>Irene Esteve</td><td>Dirección creativa de redes</td><td>2026</td></tr>
@@ -755,6 +765,10 @@ body.cur-text .cur { opacity: 0; }
       ["img/dg-concealer-anthurium.webp","Corrector Devotion delante de un anturio granate con gotas de agua"],
       ["img/dg-concealer-roots.webp","Corrector Devotion entre una hoja de anturio rosa, raíces secas y amaranto verde"],
       ["img/dg-perfume-hands.webp","Frasco de perfume Devotion sostenido por dos manos a contraluz"]]},
+    gcds: { t: "<b>GCDS · Project Morso</b> — Concepto de campaña con IA", imgs: [
+      ["img/gcds-xray.webp","Radiografía de la sandalia GCDS Morso con colmillos"],
+      ["img/gcds-rings.webp","Manos con anillos plateados delante de la sandalia de colmillos"],
+      ["img/gcds-window.webp","Escaparate GCDS con estanterías excavadas en roca y cortinas de lino"]]},
     adidas: { t: "<b>adidas Originals</b> — Concepto de campaña con IA", imgs: [
       ["img/adidas-croc-cameras.webp","Modelo con chaqueta de cocodrilo blanca bajo un aro de luz rodeada de cámaras robóticas"],
       ["img/adidas-python-portrait.webp","Retrato con chándal de pitón, gafas lilas y anillo metálico escultórico"],
