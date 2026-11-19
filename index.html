@@ -35,7 +35,7 @@
   color-scheme: dark;
 }
 [hidden] { display: none !important; }
-html, body { height: 100%; }
+html, body { height: 100%; margin: 0; }
 body {
   background: var(--night); color: var(--ink);
   font-family: var(--mono); font-size: 13px; letter-spacing: .02em;
@@ -111,8 +111,8 @@ body[data-slide="ideas"] .hud, body[data-slide="ideas"] .arrow { color: var(--pa
 .slide.on { visibility: visible; transition-delay: 0s; }
 /* the fade lives on the glass panel itself: an opacity/transform on an ancestor
    switches backdrop-filter off while it animates (the blur "pops in" late) */
-.slide > .panel { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-.slide.on > .panel { opacity: 1; transform: none; transition-delay: .15s, .15s; }
+.slide > .panel, .slide > .hero > .panel { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.slide.on > .panel, .slide.on > .hero > .panel { opacity: 1; transform: none; transition-delay: .15s, .15s; }
 
 .panel {
   position: relative; width: min(40rem, 100%); max-height: 100%; overflow: auto; overscroll-behavior: contain;
@@ -191,6 +191,57 @@ body[data-slide="ideas"] .hud, body[data-slide="ideas"] .arrow { color: var(--pa
 .gal-track { flex: 1; min-height: 0; display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 22px 22px; }
 .gal-track img { height: 100%; max-width: 86vw; width: auto; object-fit: contain; border-radius: 10px; scroll-snap-align: center; flex: none; }
 @media (max-width: 640px) { .gal-track img { height: auto; max-height: 100%; width: 86vw; } }
+
+/* ---------- home: scrollable feed under the hero ---------- */
+#home.slide { display: block; place-items: normal; padding: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; scrollbar-width: none; }
+#home.slide::-webkit-scrollbar { display: none; }
+.hero { height: 100%; min-height: 100%; display: grid; place-items: center; grid-template-rows: minmax(0,1fr); grid-template-columns: minmax(0,1fr); position: relative;
+  padding-block: 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.scroll-cue { position: absolute; left: 50%; bottom: 56px; transform: translateX(-50%); appearance: none; background: none; border: 0; color: var(--ink);
+  font: inherit; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,.4); display: grid; justify-items: center; gap: 6px; cursor: pointer; }
+.scroll-cue svg { width: 12px; height: 22px; animation: cue 1.8s var(--ease) infinite; }
+@keyframes cue { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(6px); opacity: .5; } }
+.slide > .feed { opacity: 0; transition: opacity .5s var(--ease); }
+.slide.on > .feed { opacity: 1; }
+.feed { position: relative; background: var(--night); padding: clamp(80px, 10vw, 140px) max(22px, env(safe-area-inset-right, 0px)) 120px max(22px, env(safe-area-inset-left, 0px)); }
+.feed::before { content: ""; position: absolute; left: 0; right: 0; top: -120px; height: 120px; background: linear-gradient(180deg, rgba(13,15,19,0), var(--night)); pointer-events: none; }
+.feed > section { max-width: 1320px; margin: 0 auto; }
+.feed > section + section { margin-top: clamp(110px, 14vw, 200px); }
+.f-head { display: grid; gap: 14px; margin-bottom: clamp(28px, 4vw, 48px); }
+.f-title { margin: 0; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(44px, 9vw, 150px); line-height: .86; letter-spacing: -.035em; text-wrap: balance; }
+.f-sub { margin: 0; font-size: 13px; line-height: 1.65; color: var(--ink-soft); max-width: 40rem; }
+.mosaic { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 12px; align-items: start; }
+.mosaic .ph { margin: 0; position: relative; overflow: hidden; border-radius: 12px; background: #15181d; cursor: pointer; display: block; }
+.mosaic .ph img { display: block; width: 100%; height: auto; transition: transform 1.4s var(--ease); }
+.mosaic .ph:hover img { transform: scale(1.03); }
+.s7 { grid-column: span 7; } .s5 { grid-column: span 5; } .s6 { grid-column: span 6; }
+.push { margin-top: clamp(40px, 9vw, 140px) !important; }
+.c4 { grid-column: 4 / span 6; }
+.more { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.more .silver { aspect-ratio: 4 / 5; border-radius: 12px; }
+.more figure { margin: 0; display: grid; gap: 8px; }
+.more figcaption { font-size: 10.5px; line-height: 1.45; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-soft); }
+.more figcaption b { display: block; color: var(--ink); font-weight: 500; }
+.how-lead { font-family: var(--display); font-weight: 800; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.15; letter-spacing: -.01em; margin: 0; max-width: 46rem; text-wrap: balance; }
+.steps { list-style: none; margin: clamp(40px, 5vw, 64px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+.steps li { border-top: 1px solid rgba(255,255,255,.3); padding-top: 14px; }
+.steps .n { font-size: 10.5px; letter-spacing: .14em; color: var(--ink-faint); }
+.steps h3 { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(22px, 2.6vw, 34px); line-height: .95; letter-spacing: -.02em; margin: 8px 0 10px; }
+.steps p { margin: 0; font-size: 12px; line-height: 1.65; color: var(--ink-soft); }
+.f-cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; border-top: 1px solid rgba(255,255,255,.3); padding-top: 24px; }
+.f-cta .f-title { font-size: clamp(36px, 6vw, 96px); }
+body.in-feed .arrow, body.in-feed .hud.bottom { opacity: 0; pointer-events: none; }
+.hud.top::before { content: ""; position: absolute; inset: 0 0 -36px; z-index: -1; background: linear-gradient(180deg, rgba(13,15,19,.92), rgba(13,15,19,0)); opacity: 0; transition: opacity .4s var(--ease); }
+body.in-feed .hud.top::before { opacity: 1; }
+.arrow, .hud.bottom { transition: opacity .4s var(--ease), transform .3s var(--ease); }
+@media (max-width: 640px) {
+  .s7, .s5, .s6, .c4 { grid-column: 1 / -1; }
+  .push { margin-top: 0 !important; }
+  .more { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .steps { grid-template-columns: 1fr; gap: 22px; }
+  .hero { padding-block: 56px 64px; }
+  .scroll-cue { bottom: 64px; }
+}
 
 /* ---------- work ---------- */
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
@@ -334,6 +385,7 @@ body.cur-text .cur { opacity: 0; }
 
     <!-- HOME -->
     <section class="slide on" id="home" aria-label="Home">
+      <div class="hero">
       <div class="panel compact">
         <div class="p-head">
           <h1 class="mark">No rules.<br>Just vision.</h1>
@@ -342,6 +394,73 @@ body.cur-text .cur { opacity: 0; }
         <nav class="p-nav" aria-label="Secciones">
           <a href="#home">Home</a><a href="#work">Work</a><a href="#about">About</a><a href="#call">Call</a>
         </nav>
+      </div>
+      <button class="scroll-cue" type="button" data-scroll-feed>Baja · Selected work
+        <svg viewBox="0 0 12 22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 1v19M1 15l5 5 5-5"/></svg>
+      </button>
+      </div>
+
+      <div class="feed" id="feed">
+        <section aria-labelledby="f-adidas">
+          <div class="f-head">
+            <p class="kicker"><b>_01</b> Concepto de campaña con IA · Styling &amp; Creative Direction · 2026</p>
+            <h2 class="f-title" id="f-adidas">adidas<br>Originals</h2>
+            <p class="f-sub">Cocodrilo blanco y pitón, herrajes metálicos y un set rodeado de cámaras robóticas. Las tres rayas llevadas a un universo de laboratorio.</p>
+          </div>
+          <div class="mosaic">
+            <a class="ph s7" href="#home" data-gallery="adidas"><img src="img/adidas-croc-cameras.webp" alt="Modelo con chaqueta adidas de cocodrilo blanca bajo un aro de luz rodeada de cámaras robóticas" loading="lazy"></a>
+            <a class="ph s5 push" href="#home" data-gallery="adidas"><img src="img/adidas-python-portrait.webp" alt="Retrato con chándal adidas de pitón, gafas lilas y anillo metálico escultórico" loading="lazy"></a>
+            <a class="ph s5" href="#home" data-gallery="adidas"><img src="img/adidas-croc-front.webp" alt="Plano frontal de la chaqueta de cocodrilo con hebillas metálicas y cables" loading="lazy"></a>
+            <a class="ph s7 push" href="#home" data-gallery="adidas"><img src="img/adidas-python-corridor.webp" alt="Modelo con chándal adidas de pitón en un pasillo de roca con techo de luz" loading="lazy"></a>
+          </div>
+        </section>
+
+        <section aria-labelledby="f-dg">
+          <div class="f-head">
+            <p class="kicker"><b>_02</b> Concepto de campaña con IA · Beauty &amp; Fragrance · 2026</p>
+            <h2 class="f-title" id="f-dg">Dolce &amp;<br>Gabbana</h2>
+            <p class="f-sub">Devotion. El corrector y el perfume entre anturios, raíces y gotas de agua: bodegón de beauty con luz de estudio y fondo negro.</p>
+          </div>
+          <div class="mosaic">
+            <a class="ph s5 push" href="#home" data-gallery="dg"><img src="img/dg-concealer-roots.webp" alt="Corrector Devotion entre una hoja de anturio rosa, raíces secas y amaranto verde" loading="lazy"></a>
+            <a class="ph s7" href="#home" data-gallery="dg"><img src="img/dg-concealer-anthurium.webp" alt="Corrector Devotion delante de un anturio granate con gotas de agua" loading="lazy"></a>
+            <a class="ph c4" href="#home" data-gallery="dg"><img src="img/dg-perfume-hands.webp" alt="Frasco de perfume Devotion sostenido por dos manos a contraluz" loading="lazy"></a>
+          </div>
+        </section>
+
+        <section aria-labelledby="f-more">
+          <div class="f-head">
+            <p class="kicker"><b>_03</b> Más visuales · pasa el ratón</p>
+            <h2 class="f-title" id="f-more">Más<br>visuales</h2>
+          </div>
+          <div class="more">
+            <figure><div class="silver"><img src="img/horse.webp" alt="Set de rodaje blanco con un caballo, un sofá y una escultura orgánica suspendida rodeados de cámaras y focos" loading="lazy"></div><figcaption><b>Universo visual IA</b>Creative Innovation</figcaption></figure>
+            <figure><div class="silver"><img src="img/laser.webp" alt="Figura con sudadera blanca desgarrada entre haces láser rojos junto a un coche negro" loading="lazy"></div><figcaption><b>Fashion film</b>Content Production / Dirección de vídeo</figcaption></figure>
+            <figure><div class="silver"><img src="img/fur.webp" alt="Retrato con capucha de pelo naranja y chaqueta de camuflaje en un pasillo iluminado" loading="lazy"></div><figcaption><b>Contenido para artistas</b>Content Production</figcaption></figure>
+            <figure><div class="silver"><img src="img/lacoste2.webp" alt="Hombre sentado en el desierto junto a un cocodrilo, un deportivo verde y billetes bajo un cielo estrellado" loading="lazy"></div><figcaption><b>Campaña de lanzamiento</b>Creative Direction</figcaption></figure>
+            <figure><div class="silver"><img src="img/dolls.webp" alt="Dos personajes creados con IA, una de pelo blanco y otra de pelo negro con perlas plateadas" loading="lazy" style="object-position:center 40%"></div><figcaption><b>Personajes IA</b>Creative Innovation</figcaption></figure>
+            <figure><div class="silver"><img src="img/post.webp" alt="Portátil con una foto de estudio sobre fondo azul en edición" loading="lazy"></div><figcaption><b>Foto y postproducción</b>Dirección de fotografía</figcaption></figure>
+          </div>
+        </section>
+
+        <section aria-labelledby="f-how">
+          <div class="f-head">
+            <p class="kicker"><b>_04</b> Qué hacemos · Cómo trabajamos</p>
+            <h2 class="f-title" id="f-how">Del concepto<br>al último plano</h2>
+          </div>
+          <p class="how-lead">Somos un estudio de dirección creativa en Madrid. Diseñamos el universo visual de marcas, artistas y proyectos culturales, y reunimos al equipo que lo ejecuta: en rodaje, en estudio o con IA.</p>
+          <ol class="steps">
+            <li><span class="n">01</span><h3>Escuchar</h3><p>Partimos de la marca, el artista o el producto: qué quiere contar, a quién y dónde se va a ver.</p></li>
+            <li><span class="n">02</span><h3>Concepto</h3><p>Construimos la idea y el universo visual: narrativa, moodboards, referencias, styling y casting.</p></li>
+            <li><span class="n">03</span><h3>Producción</h3><p>Reunimos al talento de nuestra red y producimos: rodaje, fotografía, fashion film o imagen generada con IA.</p></li>
+            <li><span class="n">04</span><h3>Entrega</h3><p>Edición, postproducción y piezas adaptadas a cada canal: campaña, redes, web o activación.</p></li>
+          </ol>
+        </section>
+
+        <section class="f-cta">
+          <h2 class="f-title">¿Tienes<br>una idea?</h2>
+          <a class="btn" href="#call">Cuéntanosla</a>
+        </section>
       </div>
     </section>
 
@@ -567,6 +686,8 @@ body.cur-text .cur { opacity: 0; }
     document.body.dataset.slide = order[i];
     document.getElementById("hud-count").textContent = "0" + (i + 1) + " — 04";
     const p = slides[i].querySelector(".panel"); if (p) p.scrollTop = 0;
+    if (order[i] === "home") slides[i].scrollTop = 0;
+    document.body.classList.remove("in-feed");
     cur = i;
     if (push) { try { history.replaceState(null, "", "#" + order[i]); } catch (e) {} }
   }
@@ -584,7 +705,7 @@ body.cur-text .cur { opacity: 0; }
   });
 
   document.addEventListener("wheel", e => {
-    if (e.target.closest(".panel")) return;
+    if (e.target.closest(".panel") || order[cur] === "home") return;
     const p = slides[cur] && slides[cur].querySelector(".panel");
     if (p) p.scrollTop += e.deltaY;
   }, { passive: true });
@@ -664,6 +785,16 @@ body.cur-text .cur { opacity: 0; }
     if (e.key === "Escape") closeGal();
     if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.stopImmediatePropagation(); gtrack.scrollBy({ left: (e.key === "ArrowRight" ? 1 : -1) * gtrack.clientWidth * .6, behavior: "smooth" }); }
   }, true);
+
+
+  const homeEl = document.getElementById("home");
+  homeEl.addEventListener("scroll", () => {
+    document.body.classList.toggle("in-feed", order[cur] === "home" && homeEl.scrollTop > homeEl.clientHeight * .45);
+  }, { passive: true });
+  document.addEventListener("click", e => {
+    if (e.target.closest("[data-scroll-feed]")) homeEl.scrollTo({ top: homeEl.clientHeight, behavior: "smooth" });
+    const h = e.target.closest('a[href="#home"]'); if (h && !h.hasAttribute("data-gallery") && order[cur] === "home") homeEl.scrollTo({ top: 0, behavior: "smooth" });
+  });
 
   if (location.hash === "#legal") openLegal("terminos");
   const start = order.indexOf((location.hash || "").slice(1));
