@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Campañas con IA para marcas de moda · CHAOS Department · Madrid</title>
+<meta name="description" content="Chaos Department, estudio de dirección creativa en Madrid. Campañas con IA, estilismo y dirección de arte para marcas de moda, belleza y streetwear. Cuéntanos tu marca y te enseñamos cómo sería tu campaña.">
+<link rel="canonical" href="https://chaosdepartment.es/campana-ia/">
+<meta property="og:title" content="Campañas con IA para marcas de moda · CHAOS Department">
+<meta property="og:description" content="Dirección creativa, estilismo y dirección de arte en Madrid. Te enseñamos cómo sería una campaña de tu marca.">
+<meta property="og:image" content="https://chaosdepartment.es/img/adidas-croc-front.webp">
+<meta property="og:url" content="https://chaosdepartment.es/campana-ia/">
+<link rel="icon" href="../img/heart.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<script>
+/* Google Analytics 4 y píxel de Meta: no se cargan hasta que la persona acepta las cookies */
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+window.chaosLoadGA = function () {
+  if (window.__gaLoaded) return; window.__gaLoaded = true;
+  gtag('consent', 'update', { analytics_storage: 'granted' });
+  var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2QD0M2SS1M'; document.head.appendChild(s);
+  gtag('js', new Date()); gtag('config', 'G-2QD0M2SS1M');
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '4620688844914933'); fbq('track', 'PageView');
+};
+try { if (localStorage.getItem('chaos_cookies') === 'granted') window.chaosLoadGA(); } catch (e) {}
+window.chaosTrack = function (name, params) { if (!window.__gaLoaded) return; gtag('event', name, params || {}); if (name === 'generate_lead' && window.fbq) fbq('track', 'Lead', { content_name: (params && params.method) || '' }); };
+</script>
+<style>
+:root {
+  --ink: #fff; --ink-soft: rgba(255,255,255,.72); --ink-faint: rgba(255,255,255,.45);
+  --glass: rgba(255,255,255,.14); --glass-edge: rgba(255,255,255,.42); --night: #0d0f13;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --pad: max(clamp(20px, 5vw, 80px), env(safe-area-inset-left, 0px));
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--night); color: var(--ink); font-family: var(--mono); font-size: 13px; letter-spacing: .02em; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img, video { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+
+.top { position: fixed; z-index: 20; inset: 0 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 20px var(--pad); pointer-events: none; }
+.top > * { pointer-events: auto; }
+.top img { width: clamp(116px, 13vw, 176px); filter: drop-shadow(0 1px 10px rgba(0,0,0,.25)); }
+.madrid { display: flex; gap: 10px; align-items: center; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,.45); }
+.madrid i { width: 8px; height: 8px; border-radius: 50%; background: #ff3b3b; box-shadow: 0 0 10px #ff3b3b; }
+
+.hero { position: relative; min-height: 100svh; display: grid; place-items: center; padding: 120px var(--pad) 90px; background: url("../img/glassroom-bg.webp") center 55% / cover; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,0) 35%, rgba(13,15,19,.55) 85%, var(--night)); pointer-events: none; }
+.panel { position: relative; z-index: 1; width: min(44rem, 100%); border-radius: 26px; border: 1px solid var(--glass-edge); background: var(--glass);
+  -webkit-backdrop-filter: blur(22px) saturate(1.35); backdrop-filter: blur(22px) saturate(1.35);
+  box-shadow: 0 24px 70px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.35); padding: clamp(24px, 3.4vw, 42px) clamp(22px, 3.4vw, 44px); }
+.kicker { margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-soft); }
+.kicker b { color: var(--ink); font-weight: 600; margin-right: 10px; }
+h1 { margin: 18px 0 0; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(36px, 6.4vw, 66px); line-height: .92; letter-spacing: -.025em; text-wrap: balance; }
+.lead { margin: 22px 0 0; font-size: 13.5px; line-height: 1.7; color: var(--ink-soft); max-width: 34rem; }
+.cta { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { appearance: none; border: 0; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--ink); color: var(--night); font-family: var(--mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; padding: 11px 22px; border-radius: 2px; transition: background .25s, color .25s; }
+.btn:hover { background: var(--night); color: var(--ink); }
+.btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--glass-edge); }
+.btn.ghost:hover { background: var(--ink); color: var(--night); }
+.hero-foot { position: absolute; z-index: 1; left: var(--pad); right: var(--pad); bottom: 22px; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,.45); }
+
+.feed { padding: clamp(80px, 10vw, 160px) var(--pad) 0; }
+.feed > section { max-width: 1320px; margin: 0 auto; }
+.feed > section + section { margin-top: clamp(120px, 16vw, 240px); }
+.f-head { display: grid; gap: 16px; margin-bottom: clamp(36px, 5vw, 72px); }
+.f-title { margin: 0; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(42px, 8.4vw, 140px); line-height: .96; letter-spacing: -.035em; text-wrap: balance; }
+.f-sub { margin: 0; font-size: 13px; line-height: 1.65; color: var(--ink-soft); max-width: 40rem; }
+.mosaic { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(16px, 2.6vw, 36px); }
+.mosaic figure { margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 12px; background: #15181d; }
+.mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease), filter .8s var(--ease); }
+.mosaic figure:hover img { transform: scale(1.03); }
+.note { margin-top: 14px; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
+
+.reels { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(16px, 2.6vw, 36px); }
+.reels figure { margin: 0; display: grid; gap: 10px; }
+.reels .v { position: relative; aspect-ratio: 9 / 16; overflow: hidden; border-radius: 12px; background: #15181d; }
+.reels video { width: 100%; height: 100%; object-fit: cover; }
+.reels figcaption { font-size: 10.5px; line-height: 1.5; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-soft); }
+.reels figcaption b { display: block; color: var(--ink); font-weight: 500; }
+.rec { position: absolute; left: 12px; top: 12px; font-size: 10px; letter-spacing: .16em; display: inline-flex; gap: 7px; align-items: center; text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+.rec i { width: 7px; height: 7px; border-radius: 50%; background: #ff3b3b; }
+
+.ask { display: grid; grid-template-columns: minmax(0,1fr) minmax(0, 34rem); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.ask .f-title { font-size: clamp(36px, 5.4vw, 84px); }
+.form-wrap { border-radius: 26px; border: 1px solid var(--glass-edge); background: rgba(255,255,255,.06); padding: clamp(22px, 3vw, 36px); }
+form { display: grid; gap: 16px; }
+.field { display: grid; gap: 6px; }
+.field label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-faint); }
+.field input, .field textarea, .field select { width: 100%; font: inherit; font-size: 14px; color: var(--ink); background: rgba(0,0,0,.18); border: 1px solid rgba(255,255,255,.28); border-radius: 10px; padding: 11px 12px; }
+.field select option { color: #111; }
+.field textarea { min-height: 110px; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,.4); }
+.field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--ink); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 11.5px; line-height: 1.5; color: var(--ink-soft); }
+.check input { width: 15px; height: 15px; margin: 1px 0 0; accent-color: #fff; flex: none; }
+.f-note { font-size: 12px; line-height: 1.5; color: var(--ink-soft); margin: 0; }
+.hp { position: absolute; left: -9999px; }
+.direct { margin-top: 28px; display: grid; gap: 6px; font-size: 12px; color: var(--ink-soft); }
+.direct a { color: var(--ink); }
+
+.foot { max-width: 1320px; margin: clamp(120px, 14vw, 200px) auto 0; padding: 0 var(--pad) 36px; }
+.foot img { width: clamp(110px, 12vw, 160px); margin: 0 auto 26px; opacity: .95; }
+.bar { border-top: 1px solid rgba(255,255,255,.25); padding-top: 14px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); }
+.bar a { color: var(--ink-soft); text-decoration: none; }
+
+.ck { position: fixed; left: 16px; bottom: 16px; z-index: 41; width: min(25rem, calc(100% - 32px)); padding: 18px 20px; border-radius: 18px;
+  border: 1px solid var(--glass-edge); background: rgba(13,15,19,.62); -webkit-backdrop-filter: blur(22px) saturate(1.35); backdrop-filter: blur(22px) saturate(1.35);
+  box-shadow: 0 24px 70px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.25); font-size: 12px; line-height: 1.6; }
+.ck p { margin: 0 0 14px; color: var(--ink-soft); }
+.ck b { display: block; margin-bottom: 6px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+.ck-row { display: flex; gap: 8px; }
+.ck-row .btn { flex: 1; padding: 9px 12px; font-size: 12px; }
+
+@media (max-width: 820px) {
+  .mosaic { grid-template-columns: 1fr 1fr; }
+  .mosaic figure:nth-child(3) { grid-column: span 2; aspect-ratio: 16 / 11; }
+  .reels { grid-template-columns: 1fr 1fr; }
+  .reels figure:nth-child(3) { display: none; }
+  .ask { grid-template-columns: 1fr; }
+  .row2 { grid-template-columns: 1fr; }
+  .hero-foot span + span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .mosaic img { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="/" aria-label="CHAOS Department, inicio"><img src="../img/logo-white.png" alt="CHAOS" width="700" height="140"></a>
+  <div class="madrid"><i></i>Madrid</div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="h">
+    <div class="panel">
+      <p class="kicker"><b>_01</b>Campañas con IA · Moda · Belleza · Streetwear</p>
+      <h1 id="h">Campañas con IA para marcas de moda.</h1>
+      <p class="lead">Somos Chaos Department, estudio de dirección creativa en Madrid. Unimos estilismo, dirección de arte e inteligencia artificial para crear campañas, bodegones de producto y espacios. Cuéntanos tu marca y te enseñamos cómo sería tu campaña.</p>
+      <div class="cta">
+        <a class="btn" href="#pide">Cuéntanos tu marca</a>
+        <a class="btn ghost" href="#trabajos">Ver trabajos</a>
+      </div>
+    </div>
+    <div class="hero-foot"><span>Chaos Department / <b>Based in Madrid</b></span><span>No rules. Just vision.</span></div>
+  </section>
+
+  <div class="feed" id="trabajos">
+    <section aria-labelledby="t-adidas">
+      <div class="f-head">
+        <p class="kicker"><b>_02</b>Concepto de campaña con IA · Styling &amp; Creative Direction</p>
+        <h2 class="f-title" id="t-adidas">adidas<br>Originals</h2>
+        <p class="f-sub">Cocodrilo blanco y pitón, herrajes metálicos y un set rodeado de cámaras robóticas. Las tres rayas llevadas a un universo de laboratorio.</p>
+      </div>
+      <div class="mosaic">
+        <figure><img src="../img/adidas-croc-front.webp" alt="Chaqueta bomber de cocodrilo blanca con hebillas metálicas y cables, rodeada de cámaras robóticas" loading="lazy"></figure>
+        <figure><img src="../img/adidas-python-portrait.webp" alt="Retrato con chándal de pitón, gafas lilas y anillo metálico escultórico" loading="lazy"></figure>
+        <figure><img src="../img/adidas-python-corridor.webp?v=2" alt="Modelo con chándal de pitón en un pasillo de roca con techo de luz" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="t-dg">
+      <div class="f-head">
+        <p class="kicker"><b>_03</b>Concepto de campaña con IA · Beauty &amp; Fragrance</p>
+        <h2 class="f-title" id="t-dg">Dolce &amp;<br>Gabbana</h2>
+        <p class="f-sub">Devotion. El corrector y el perfume entre anturios, raíces y gotas de agua: bodegón de belleza con luz de estudio y fondo negro.</p>
+      </div>
+      <div class="mosaic">
+        <figure><img src="../img/dg-concealer-anthurium.webp" alt="Corrector Devotion delante de un anturio granate con gotas de agua" loading="lazy"></figure>
+        <figure><img src="../img/dg-concealer-roots.webp" alt="Corrector Devotion entre una hoja de anturio rosa, raíces secas y amaranto verde" loading="lazy"></figure>
+        <figure><img src="../img/dg-perfume-hands.webp" alt="Frasco de perfume Devotion sostenido por dos manos a contraluz" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="t-gcds">
+      <div class="f-head">
+        <p class="kicker"><b>_04</b>Concepto de campaña con IA · Footwear &amp; Retail</p>
+        <h2 class="f-title" id="t-gcds">GCDS<br>Project Morso</h2>
+        <p class="f-sub">Una sandalia con mandíbula de colmillos cromados presentada como espécimen de laboratorio: radiografía, bodegón con joyería plateada y escaparate excavado en roca.</p>
+      </div>
+      <div class="mosaic">
+        <figure><img src="../img/gcds-xray.webp" alt="Radiografía de la sandalia Morso con colmillos y datos de laboratorio" loading="lazy"></figure>
+        <figure><img src="../img/gcds-rings.webp" alt="Manos con anillos plateados delante de la sandalia de colmillos" loading="lazy"></figure>
+        <figure><img src="../img/gcds-window.webp" alt="Escaparate con estanterías excavadas en roca, cortinas de lino y red de cuerda" loading="lazy"></figure>
+      </div>
+      <p class="note">Los conceptos de adidas, Dolce &amp; Gabbana y GCDS son propuestas creativas de Chaos Department, no encargos de las marcas.</p>
+    </section>
+
+    <section aria-labelledby="t-rodajes">
+      <div class="f-head">
+        <p class="kicker"><b>_05</b>Content Production · Rodajes reales</p>
+        <h2 class="f-title" id="t-rodajes">También<br>en rodaje</h2>
+        <p class="f-sub">La IA no sustituye al set: dirigimos rodajes, contenido de campaña y eventos con artistas y creadoras.</p>
+      </div>
+      <div class="reels">
+        <figure><div class="v"><video src="../vid/reel-1.mp4" poster="../vid/reel-1.jpg" muted loop playsinline preload="metadata" aria-label="Rodaje de Sara Fructuoso para YSL"></video><span class="rec"><i></i>REC</span></div><figcaption><b>Sara Fructuoso × YSL</b>Rodaje de campaña beauty</figcaption></figure>
+        <figure><div class="v"><video src="../vid/reel-3.mp4" poster="../vid/reel-3.jpg" muted loop playsinline preload="metadata" aria-label="Lidia Rauet para adidas"></video><span class="rec"><i></i>REC</span></div><figcaption><b>Lidia Rauet × adidas</b>Contenido de campaña</figcaption></figure>
+        <figure><div class="v"><video src="../vid/reel-2.mp4" poster="../vid/reel-2.jpg" muted loop playsinline preload="metadata" aria-label="Mar Lucas en el Festival de Cannes"></video><span class="rec"><i></i>REC</span></div><figcaption><b>Mar Lucas · Festival de Cannes</b>Contenido de evento y alfombra roja</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="pide" aria-labelledby="t-pide">
+      <div class="ask">
+        <div class="f-head">
+          <p class="kicker"><b>_06</b>Para tu marca</p>
+          <h2 class="f-title" id="t-pide">¿Cómo sería la campaña de tu marca?</h2>
+          <p class="f-sub">Déjanos tu marca y qué te gustaría contar. Te escribimos con una primera idea de concepto pensada para ella y, si encaja, hablamos del proyecto completo.</p>
+          <div class="direct">
+            <span>¿Prefieres escribirnos directamente?</span>
+            <a href="mailto:info.chaosdepartment@gmail.com?subject=%C3%9Anete%20a%20la%20comunidad%20de%20Chaos">info.chaosdepartment@gmail.com</a>
+            <a href="https://instagram.com/chaos.department" target="_blank" rel="noopener">Instagram @chaos.department</a>
+          </div>
+        </div>
+        <div class="form-wrap">
+          <form id="f" novalidate>
+            <div class="row2">
+              <div class="field"><label for="f-name">Nombre</label><input id="f-name" name="name" autocomplete="name" required></div>
+              <div class="field"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
+            </div>
+            <div class="row2">
+              <div class="field"><label for="f-brand">Marca</label><input id="f-brand" name="brand" autocomplete="organization" required></div>
+              <div class="field"><label for="f-web">Web o Instagram</label><input id="f-web" name="web" placeholder="@tumarca"></div>
+            </div>
+            <div class="field"><label for="f-type">Qué buscáis</label>
+              <select id="f-type" name="type">
+                <option>Campaña con IA</option>
+                <option>Campaña con rodaje</option>
+                <option>Cambio de estética de marca</option>
+                <option>Fotografía de producto</option>
+                <option>Escaparate o activación</option>
+                <option>Todavía no lo sé</option>
+              </select>
+            </div>
+            <div class="field"><label for="f-text">Cuéntanos tu idea</label><textarea id="f-text" name="text" placeholder="Producto, lanzamiento, temporada, referencias…"></textarea></div>
+            <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <label class="check" for="f-ok"><input type="checkbox" id="f-ok" name="ok"> <span>He leído y acepto la <a href="/#legal">política de privacidad</a> y los términos y condiciones.</span></label>
+            <button class="btn" type="submit">Enviar</button>
+            <p class="f-note" id="f-note" hidden role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="foot">
+    <img src="../img/logo-white.png" alt="CHAOS" width="700" height="140" loading="lazy">
+    <div class="bar"><span>© 2026 Chaos Department · Madrid</span><span><a href="/">chaosdepartment.es</a> · <a href="/#legal">Legal</a> · <a href="#" data-ck-open>Cookies</a></span><span>No rules. Just vision.</span></div>
+  </footer>
+</main>
+
+<div class="ck" id="ck" hidden role="dialog" aria-label="Aviso de cookies">
+  <b>Cookies</b>
+  <p>Esta web usa cookies. <a href="/#legal">Política de cookies</a></p>
+  <div class="ck-row"><button class="btn ghost" type="button" data-ck="denied">Rechazar</button><button class="btn" type="button" data-ck="granted">Aceptar</button></div>
+</div>
+
+<script>
+(function () {
+  var ck = document.getElementById('ck'), v = null;
+  try { v = localStorage.getItem('chaos_cookies'); } catch (e) {}
+  if (!v) ck.hidden = false;
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ck]');
+    if (b) { var c = b.dataset.ck; try { localStorage.setItem('chaos_cookies', c); } catch (e2) {} ck.hidden = true; if (c === 'granted') window.chaosLoadGA(); return; }
+    if (e.target.closest('[data-ck-open]')) { e.preventDefault(); ck.hidden = false; }
+    var m = e.target.closest('a[href^="mailto:"]'); if (m) window.chaosTrack('generate_lead', { method: 'email' });
+  });
+
+  /* Vídeos: solo se reproducen cuando están en pantalla */
+  var io = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting) { x.target.play().catch(function () {}); } else { x.target.pause(); } }); }, { threshold: .35 });
+  document.querySelectorAll('.reels video').forEach(function (vd) { io.observe(vd); });
+
+  var f = document.getElementById('f'), note = document.getElementById('f-note');
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = f.name.value.trim(), mail = f.email.value.trim(), brand = f.brand.value.trim(), text = f.text.value.trim();
+    note.hidden = false;
+    if (!name || !mail || !brand) { note.textContent = 'Faltan datos: rellena tu nombre, tu email y el nombre de la marca.'; return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) { note.textContent = 'Ese email no parece válido. Revísalo para que podamos responderte.'; return; }
+    if (!f.ok.checked) { note.textContent = 'Para enviar el mensaje tienes que aceptar la política de privacidad.'; return; }
+    var btn = f.querySelector('button[type="submit"]'); btn.disabled = true; btn.textContent = 'Enviando…';
+    note.textContent = 'Enviando tu mensaje…';
+    var p = new URLSearchParams(location.search);
+    var payload = {
+      access_key: 'fd8ffcf9-936e-4fcf-a59d-7bc4e006face',
+      subject: 'Nuevo contacto web CHAOS · ' + name + ' · ' + brand + ' (campaña IA)',
+      from_name: 'Web CHAOS Department',
+      name: name, email: mail, replyto: mail,
+      marca: brand, web_instagram: f.web.value.trim(), busca: f.type.value, message: text || '(sin mensaje)',
+      origen: 'Página campaña IA' + (p.get('utm_source') ? ' · ' + p.get('utm_source') + ' / ' + (p.get('utm_campaign') || '') : ''),
+      privacidad: 'Aceptada', botcheck: f.botcheck.checked
+    };
+    var ctl = new AbortController(); var tm = setTimeout(function () { ctl.abort(); }, 20000);
+    fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload), signal: ctl.signal })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (j && j.success) { note.textContent = 'Recibido, ' + name + '. Te escribimos a ' + mail + ' con una primera idea para ' + brand + '.'; f.reset(); window.chaosTrack('generate_lead', { method: 'formulario_campana_ia' }); }
+        else { note.textContent = 'No se ha podido enviar. Escríbenos a info.chaosdepartment@gmail.com.'; }
+      })
+      .catch(function () { note.textContent = 'No se ha podido enviar. Escríbenos directamente a info.chaosdepartment@gmail.com.'; })
+      .finally(function () { clearTimeout(tm); btn.disabled = false; btn.textContent = 'Enviar'; });
+  });
+})();
+</script>
+</body>
+</html>
