@@ -106,10 +106,13 @@ body[data-slide="ideas"] .hud, body[data-slide="ideas"] .arrow { color: var(--pa
 .slide {
   position: absolute; inset: 0; display: grid; place-items: center; grid-template-rows: minmax(0, 1fr); grid-template-columns: minmax(0, 1fr);
   padding-block: 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  visibility: hidden; opacity: 0; transform: translateY(18px);
-  transition: opacity .7s var(--ease), transform .7s var(--ease), visibility 0s linear .7s;
+  visibility: hidden; transition: visibility 0s linear .7s;
 }
-.slide.on { visibility: visible; opacity: 1; transform: none; transition-delay: .15s, .15s, 0s; }
+.slide.on { visibility: visible; transition-delay: 0s; }
+/* the fade lives on the glass panel itself: an opacity/transform on an ancestor
+   switches backdrop-filter off while it animates (the blur "pops in" late) */
+.slide > .panel { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.slide.on > .panel { opacity: 1; transform: none; transition-delay: .15s, .15s; }
 
 .panel {
   position: relative; width: min(40rem, 100%); max-height: 100%; overflow: auto; overscroll-behavior: contain;
@@ -175,10 +178,11 @@ body[data-slide="ideas"] .hud, body[data-slide="ideas"] .arrow { color: var(--pa
 .silver:hover::after, .silver:focus-within::after { opacity: .4; background-position: 0 0; }
 .silver:hover::before, .silver:focus-within::before { opacity: 1; transform: translateX(120%); transition: transform 1.1s var(--ease), opacity .2s; }
 
-/* ---------- campaigns + gallery ---------- */
-.camps { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
-.camp .silver { aspect-ratio: 4 / 5; }
-.camp .count { position: absolute; z-index: 3; left: 12px; bottom: 12px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: rgba(13,15,19,.55); backdrop-filter: blur(6px); padding: 5px 9px; border-radius: 2px; pointer-events: none; }
+/* ---------- project gallery ---------- */
+.index tr[data-gallery] { cursor: pointer; }
+.index tr[data-gallery] td:first-child::after { content: " ↗"; color: var(--ink-faint); transition: color .25s; }
+.index tr[data-gallery]:hover td:first-child::after, .index tr[data-gallery]:focus-visible td:first-child::after { color: var(--ink); }
+.index tr[data-gallery]:focus-visible { outline: 1.5px solid var(--ink); outline-offset: -1px; }
 .gal { position: fixed; inset: 0; z-index: 90; background: rgba(13,15,19,.94); display: flex; flex-direction: column; }
 .gal[hidden] { display: none; }
 .gal-top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 22px; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-soft); }
@@ -186,7 +190,7 @@ body[data-slide="ideas"] .hud, body[data-slide="ideas"] .arrow { color: var(--pa
 .gal-x { appearance: none; background: none; border: 0; color: var(--ink); font: inherit; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; padding: 4px 0; }
 .gal-track { flex: 1; min-height: 0; display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 22px 22px; }
 .gal-track img { height: 100%; max-width: 86vw; width: auto; object-fit: contain; border-radius: 10px; scroll-snap-align: center; flex: none; }
-@media (max-width: 640px) { .camps { grid-template-columns: 1fr 1fr; gap: 8px; } .gal-track img { height: auto; max-height: 100%; width: 86vw; } }
+@media (max-width: 640px) { .gal-track img { height: auto; max-height: 100%; width: 86vw; } }
 
 /* ---------- work ---------- */
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
@@ -353,17 +357,10 @@ body.cur-text .cur { opacity: 0; }
         </nav>
 
         <div>
-          <p class="kicker"><b>_002</b> Conceptos de campaña con IA · clic para verlos</p>
-          <div class="camps" style="margin-top:14px">
-            <figure class="card camp"><a class="silver" href="#work" data-gallery="dg" aria-label="Ver concepto de campaña con IA Dolce &amp; Gabbana Devotion"><img src="img/dg-concealer-anthurium.webp" alt="Corrector Dolce &amp; Gabbana Devotion delante de una flor de anturio granate con gotas de agua" loading="lazy"><span class="count">03 imágenes</span></a><figcaption><b>Dolce &amp; Gabbana · Devotion</b>Concepto de campaña con IA · Beauty &amp; fragrance</figcaption></figure>
-            <figure class="card camp"><a class="silver" href="#work" data-gallery="adidas" aria-label="Ver concepto de campaña con IA adidas Originals"><img src="img/adidas-croc-cameras.webp" alt="Modelo con chaqueta adidas de piel de cocodrilo blanca rodeada de brazos robóticos con cámaras" loading="lazy"><span class="count">04 imágenes</span></a><figcaption><b>adidas Originals</b>Concepto de campaña con IA · Styling &amp; Creative Direction</figcaption></figure>
-          </div>
-        </div>
-
-        <div>
-          <p class="kicker"><b>_003</b> Selected work · pasa el ratón</p>
+          <p class="kicker"><b>_002</b> Selected work · pasa el ratón</p>
           <div class="grid" style="margin-top:14px">
             <figure class="card"><a class="silver" href="#about" aria-label="Universo IA"><img src="img/horse.webp" alt="Set de rodaje blanco con un caballo, un sofá y una escultura orgánica suspendida rodeados de cámaras y focos" loading="lazy"></a><figcaption><b>Universo visual IA</b>Creative Innovation</figcaption></figure>
+            <figure class="card"><a class="silver" href="#about" aria-label="Styling"><img src="img/croc.webp" alt="Modelo con chaqueta de piel blanca con hebillas metálicas rodeada de brazos robóticos" loading="lazy"></a><figcaption><b>Styling</b>Estilismo para artistas</figcaption></figure>
             <figure class="card"><a class="silver" href="#about" aria-label="Fashion film"><img src="img/laser.webp" alt="Figura con sudadera blanca desgarrada entre haces láser rojos junto a un coche negro" loading="lazy"></a><figcaption><b>Fashion film</b>Content Production / Dirección de vídeo</figcaption></figure>
             <figure class="card"><a class="silver" href="#about" aria-label="Contenido para artistas"><img src="img/fur.webp" alt="Retrato con capucha de pelo naranja y chaqueta de camuflaje en un pasillo iluminado" loading="lazy"></a><figcaption><b>Contenido para artistas</b>Content Production</figcaption></figure>
             <figure class="card"><a class="silver" href="#about" aria-label="Campaña de lanzamiento"><img src="img/lacoste2.webp" alt="Hombre sentado en el desierto junto a un cocodrilo, un deportivo verde y billetes bajo un cielo estrellado" loading="lazy"></a><figcaption><b>Campaña de lanzamiento</b>Creative Direction</figcaption></figure>
@@ -372,13 +369,13 @@ body.cur-text .cur { opacity: 0; }
         </div>
 
         <div>
-          <p class="kicker"><b>_004</b> Project index</p>
+          <p class="kicker"><b>_003</b> Project index</p>
           <div class="tablewrap" style="margin-top:12px">
             <table class="index">
               <thead><tr><th>Name</th><th>Type</th><th>Year</th></tr></thead>
               <tbody>
-                <tr><td>Dolce &amp; Gabbana</td><td>Concepto de campaña con IA</td><td>2026</td></tr>
-                <tr><td>adidas Originals</td><td>Concepto de campaña con IA</td><td>2026</td></tr>
+                <tr data-gallery="dg" tabindex="0" role="button" aria-label="Ver la sesión de Dolce &amp; Gabbana"><td>Dolce &amp; Gabbana</td><td>Concepto de campaña con IA</td><td>2026</td></tr>
+                <tr data-gallery="adidas" tabindex="0" role="button" aria-label="Ver la sesión de adidas Originals"><td>adidas Originals</td><td>Concepto de campaña con IA</td><td>2026</td></tr>
                 <tr><td>RVFV</td><td>Dirección creativa</td><td>2026</td></tr>
                 <tr><td>Irene Esteve</td><td>Dirección creativa de redes</td><td>2026</td></tr>
                 <tr><td>ONELIFE</td><td>Dirección creativa de redes</td><td>2026</td></tr>
@@ -397,7 +394,7 @@ body.cur-text .cur { opacity: 0; }
         </div>
 
         <div>
-          <p class="kicker"><b>_005</b> Why Chaos?</p>
+          <p class="kicker"><b>_004</b> Why Chaos?</p>
           <div class="stats" style="margin-top:16px">
             <div class="stat"><strong>04+</strong><span>Years in culture</span></div>
             <div class="stat"><strong>50+</strong><span>Brands &amp; projects</span></div>
@@ -420,7 +417,7 @@ body.cur-text .cur { opacity: 0; }
         </nav>
 
         <div>
-          <p class="kicker"><b>_006</b> About · Estudio de dirección creativa</p>
+          <p class="kicker"><b>_005</b> About · Estudio de dirección creativa</p>
           <h3 class="manifesto" style="margin-top:14px">No rules.<br>Just vision.</h3>
           <p class="kicker" style="margin-top:10px">Sin reglas. Solo visión.</p>
           <div class="silver about-img" style="margin-top:22px"><img src="img/dolls.webp" alt="Dos personajes creados con IA por Chaos Department, una de pelo blanco y otra de pelo negro con perlas plateadas" loading="lazy" style="object-position:center 40%"></div>
@@ -430,7 +427,7 @@ body.cur-text .cur { opacity: 0; }
         <p class="sub" style="margin-top:12px">Somos un estudio de dirección creativa con base en Madrid. Construimos el universo visual de marcas, artistas y proyectos culturales, y reunimos al talento que lo hace realidad. Moda, música, gastronomía y marcas que no quieren parecerse a nadie.</p>
 
         <div>
-          <p class="kicker"><b>_007</b> El territorio de Chaos</p>
+          <p class="kicker"><b>_006</b> El territorio de Chaos</p>
           <ul class="terr" style="margin-top:14px">
             <li><span class="n">01</span><h3>Creative Direction</h3><p>Conceptos, campañas, universos visuales, moodboards, referencias, narrativa y dirección general de proyectos.</p></li>
             <li><span class="n">02</span><h3>Content Production</h3><p>Rodajes, dirección de vídeo, contenido para artistas, fashion films, fotografía, edición y producción de campañas.</p></li>
@@ -440,7 +437,7 @@ body.cur-text .cur { opacity: 0; }
         </div>
 
         <div>
-          <p class="kicker"><b>_008</b> También hacemos</p>
+          <p class="kicker"><b>_007</b> También hacemos</p>
           <ul class="tags" style="margin-top:12px">
             <li>Lanzamientos de producto</li><li>Conceptos de temporada</li><li>Contenido gastronómico</li><li>Dirección de foto y vídeo</li><li>Campañas con artistas</li><li>Activaciones y experiencias</li><li>Dirección creativa de redes</li>
           </ul>
@@ -464,7 +461,7 @@ body.cur-text .cur { opacity: 0; }
           <a href="#home">Home</a><a href="#work">Work</a><a href="#about">About</a><a href="#call">Call</a>
         </nav>
         <div>
-          <p class="kicker"><b>_009</b> Call · Cuéntanos tu idea</p>
+          <p class="kicker"><b>_008</b> Call · Cuéntanos tu idea</p>
           <form id="f" style="margin-top:16px" novalidate>
             <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
             <div class="two">
@@ -659,7 +656,11 @@ body.cur-text .cur { opacity: 0; }
     if (!gal.hidden && (e.target.closest("[data-gal-close]") || e.target === gal || e.target === gtrack)) { e.stopImmediatePropagation(); closeGal(); }
   }, true);
   document.addEventListener("keydown", e => {
-    if (gal.hidden) return;
+    if (gal.hidden) {
+      const r = e.target.closest && e.target.closest("tr[data-gallery]");
+      if (r && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openGal(r.dataset.gallery); }
+      return;
+    }
     if (e.key === "Escape") closeGal();
     if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.stopImmediatePropagation(); gtrack.scrollBy({ left: (e.key === "ArrowRight" ? 1 : -1) * gtrack.clientWidth * .6, behavior: "smooth" }); }
   }, true);
